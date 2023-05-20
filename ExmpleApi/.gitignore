@@ -1,0 +1,37 @@
+# Dossiers binaires compilés
+bin/
+obj/
+
+# Fichiers de configuration générés
+*.dll.config
+
+# Fichiers temporaires
+*.tmp
+
+# Dossiers spécifiques à l'IDE Visual Studio
+.vs/
+
+# Dossiers spécifiques à Rider
+.idea/
+*.sln.iml
+
+# Fichiers de sauvegarde
+*~
+*~
+*.bak
+
+# Fichiers de cache NuGet
+*.nuget.cache
+*.exe
+
+# Fichiers de cache de l'IDE
+.vscode/
+
+# Dossiers de fichiers journaux
+logs/
+
+# Fichiers de sauvegarde de base de données
+*.bak
+*.bak.*
+*.ldf
+*.mdf
