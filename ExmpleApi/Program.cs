@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Asp.Versioning;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,11 +25,10 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
 
 builder.Services.AddScoped<IScheduleRepository, ScheduleRepository>();
 builder.Services.AddScoped<IScheduleRepositoryV2, ScheduleRepositoryV2>();
-builder.Services.AddApiVersioning();
-builder.Services.AddVersionedApiExplorer(options =>
+builder.Services.AddApiVersioning(options =>
 {
-    options.GroupNameFormat = "'v'VVV";
-    options.SubstituteApiVersionInUrl = true;
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.DefaultApiVersion = new ApiVersion(1, 0);
 });
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -37,6 +37,7 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
     c.SwaggerDoc("v2", new OpenApiInfo { Title = "My API", Version = "v2" });
     c.OperationFilter<SwaggerDefaultValues>();
+
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace MyAPI.Controllers
+namespace ExmpleApi.Controllers.V1
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -53,5 +53,5 @@ namespace MyAPI.Controllers
         }
     }
 
-  
+
 }

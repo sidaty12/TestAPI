@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyAPI.Controllers
+namespace ExmpleApi.Controllers.V1
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -56,11 +56,11 @@ namespace MyAPI.Controllers
 
                 return Ok(new { Token = tokenHandler.WriteToken(token) });
 
-                 }
+            }
 
             return Unauthorized();
         }
     }
 
-   
+
 }

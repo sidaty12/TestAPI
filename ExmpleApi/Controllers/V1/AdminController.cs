@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ExmpleApi.Models;
 
-namespace ExmpleApi.Controllers
+namespace ExmpleApi.Controllers.V1
 {
     [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
@@ -53,7 +53,7 @@ namespace ExmpleApi.Controllers
                     Console.WriteLine(error.Description);
                 }
             }
-                return BadRequest("Failed to assign role");
+            return BadRequest("Failed to assign role");
         }
     }
 }
