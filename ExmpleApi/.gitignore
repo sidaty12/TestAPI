@@ -14,3 +14,4 @@ wwwroot/lib/
 *.log
 *.swp
 *.env
+.vs/ExempleApi/v17/
