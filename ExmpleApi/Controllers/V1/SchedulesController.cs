@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExmpleApi.Controllers.V1
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/schedules")]
     [ApiController]
@@ -19,7 +19,7 @@ namespace ExmpleApi.Controllers.V1
         {
             _repository = repository;
         }
-       // [Authorize(Roles = "Admin,ReadonlyUser")]
+        [Authorize(Roles = "Admin,ReadonlyUser")]
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Schedule>>> GetSchedules()
