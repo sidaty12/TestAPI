@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace ExmpleApi.Test
+namespace ExempleApiTest.ControllersTest.V1Test
 {
     public class SchedulesControllerTests
     {
