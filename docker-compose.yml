@@ -10,15 +10,19 @@ services:
     depends_on:
       - db
     environment:
-      - "ConnectionStrings:DefaultConnection=Server=db;Port=3306;Database=MyDbdb;User=Myuser;Password=MYpassword;"
+    - "ConnectionStrings:SQLiteConnection=Data Source=app.db"
+    - "ConnectionStrings:MariaDBConnection=Server=db;Port=3306;Database=mydb;User=myuser;Password=mypassword;"
+    - "UseSqlite=false"  # Use SQLite
+    - "ASPNETCORE_URLS=http://+:80"
+
   db:
     image: mariadb
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: yourpassword
-      MYSQL_DATABASE: yourdb
-      MYSQL_USER: youruser
-      MYSQL_PASSWORD: yourpassword
+      MYSQL_ROOT_PASSWORD: mypassword
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
     volumes:
       - db_data:/var/lib/mysql
 volumes:

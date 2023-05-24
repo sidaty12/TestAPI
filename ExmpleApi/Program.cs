@@ -16,8 +16,22 @@ using Asp.Versioning;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite("Data Source=app.db"));
+
+var useSqlite = string.Equals(builder.Configuration["UseSqlite"], "true", StringComparison.OrdinalIgnoreCase);
+if (useSqlite)
+{
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnection")));
+}
+else
+{
+    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        options.UseMySql(builder.Configuration.GetConnectionString("MariaDBConnection"),
+        new MySqlServerVersion(new Version(10, 5, 5))));
+}
+
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+   // options.UseSqlite("Data Source=app.db"));
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -113,7 +127,7 @@ using (var scope = app.Services.CreateScope())
     var serviceProvider = scope.ServiceProvider;
     var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     string[] roleNames = { "Admin", "ReadonlyUser", "WriteUser" };
-    foreach (var roleName in roleNames)
+   /* foreach (var roleName in roleNames)
     {
         // Check if the role already exists, otherwise create it
         var roleExists = roleManager.RoleExistsAsync(roleName).Result;
@@ -121,7 +135,7 @@ using (var scope = app.Services.CreateScope())
         {
             var roleResult = roleManager.CreateAsync(new IdentityRole(roleName)).Result;
         }
-    }
+    }*/
 }
 
 app.Run();
